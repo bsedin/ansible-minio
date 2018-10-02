@@ -1,0 +1,20 @@
+---
+- name: ensure minio storage directory
+  file:
+    dest: '{{ minio_storage_dir }}'
+    state: directory
+
+- name: run minio container
+  docker_container:
+    state: started
+    restart: yes
+    recreate: yes
+    pull: true
+    name: '{{ minio_container_name }}'
+    image: '{{ minio_image }}'
+    restart_policy: always
+    volumes: '{{ minio_volumes }}'
+    env: '{{ minio_env }}'
+    networks: '{{ minio_networks }}'
+    links: '{{ minio_links }}'
+    command: '{{ minio_command }}'

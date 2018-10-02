@@ -1,0 +1,38 @@
+---
+minio_data_dir: /var/lib/minio
+minio_storage_dir: '{{ minio_data_dir }}/{{ minio_container_name }}/data'
+minio_container_name: minio
+minio_image: minio/minio
+minio_access_key: ''
+minio_secret_key: ''
+minio_browser: 'on'
+minio_env:
+  MINIO_ACCESS_KEY: '{{ minio_access_key }}'
+  MINIO_SECRET_KEY: '{{ minio_secret_key }}'
+  MINIO_BROWSER: '{{ minio_browser }}'
+minio_links: []
+minio_networks: []
+minio_command: server /export
+minio_volumes:
+  - '{{ minio_storage_dir }}:/export'
+
+minio_mirror_dirs: []
+minio_mirror_instances: []
+
+# minio_mirrors:
+#   - container_name: minio-mirror # mirror intire instance
+#     source: https://<Access Key>:<Secret Key>@<YOUR-MINIO-INSTANCE>
+#     target: https://<Access Key>:<Secret Key>@<YOUR-S3-ENDPOINT>
+#     flags: '-w --overwrite --remove'
+#
+#   - container_name: minio-mirror_bucket_name
+#     source: '{{ minio_data_dir }}/bucket_name'
+#     target: https://<Access Key>:<Secret Key>@<YOUR-S3-ENDPOINT>
+#     bucket: bucket_name
+#     flags: '-w --overwrite --remove'
+#
+#   - container_name: mirror_backups
+#     source: '{{ minio_data_dir }}/backups'
+#     target: https://<Access Key>:<Secret Key>@<YOUR-S3-ENDPOINT>
+#     bucket: backups
+#     flags: '-w --overwrite'
