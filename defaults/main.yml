@@ -19,7 +19,7 @@ minio_volumes:
 minio_mirror_dirs: []
 minio_mirror_instances: []
 
-# minio_mirrors:
+# minio_mirror_instances:
 #   - container_name: minio-mirror # mirror intire instance
 #     source: https://<Access Key>:<Secret Key>@<YOUR-MINIO-INSTANCE>
 #     target: https://<Access Key>:<Secret Key>@<YOUR-S3-ENDPOINT>
