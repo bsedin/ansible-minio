@@ -11,10 +11,11 @@
     recreate: yes
     pull: true
     name: '{{ minio_container_name }}'
-    image: '{{ minio_image }}'
+    image: '{{ minio_container_image }}'
     restart_policy: always
-    volumes: '{{ minio_volumes }}'
-    env: '{{ minio_env }}'
-    networks: '{{ minio_networks }}'
-    links: '{{ minio_links }}'
-    command: '{{ minio_command }}'
+    volumes: '{{ minio_container_volumes }}'
+    env: '{{ minio_container_env }}'
+    networks: '{{ minio_container_networks }}'
+    links: '{{ minio_container_links }}'
+    command: '{{ minio_container_command }}'
+    published_ports: '{{ minio_container_published_ports }}'
