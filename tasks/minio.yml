@@ -1,7 +1,7 @@
 ---
-- name: ensure minio storage directory
+- name: ensure minio data directory
   file:
-    dest: '{{ minio_storage_dir }}'
+    dest: '{{ minio_data_dir }}'
     state: directory
 
 - name: run minio container
@@ -19,3 +19,4 @@
     links: '{{ minio_container_links }}'
     command: '{{ minio_container_command }}'
     published_ports: '{{ minio_container_published_ports }}'
+    exposed_ports: '{{ minio_container_exposed_ports }}'
