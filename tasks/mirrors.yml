@@ -1,33 +1,33 @@
 ---
-- name: run minio mirror dirs containers
-  docker_container:
+- name: Run minio mirror dirs containers
+  community.docker.docker_container:
     state: started
-    recreate: yes
-    restart: yes
-    name: '{{ item.container_name }}'
+    recreate: true
+    restart: true
+    name: "{{ item.container_name }}"
     image: minio/mc
     restart_policy: always
     volumes:
-      - '{{ item.source }}:/export:ro'
+      - "{{ item.source }}:/export:ro"
     env:
-      MC_HOSTS_target: '{{ item.target }}'
-    networks: '{{ minio_networks }}'
-    links: '{{ minio_links }}'
+      MC_HOSTS_target: "{{ item.target }}"
+    networks: "{{ minio_networks }}"
+    links: "{{ minio_links }}"
     command: mirror {{ item.flags }} /export target/{{ item.bucket }}
-  with_items: '{{ minio_mirror_dirs }}'
+  with_items: "{{ minio_mirror_dirs }}"
 
-- name: run minio mirror buckets containers
-  docker_container:
+- name: Run minio mirror buckets containers
+  community.docker.docker_container:
     state: started
-    recreate: yes
-    restart: yes
-    name: '{{ item.container_name }}'
+    recreate: true
+    restart: true
+    name: "{{ item.container_name }}"
     image: minio/mc
     restart_policy: always
     env:
-      MC_HOSTS_source: '{{ item.source }}'
-      MC_HOSTS_target: '{{ item.target }}'
-    networks: '{{ minio_networks }}'
-    links: '{{ minio_links }}'
+      MC_HOSTS_source: "{{ item.source }}"
+      MC_HOSTS_target: "{{ item.target }}"
+    networks: "{{ minio_networks }}"
+    links: "{{ minio_links }}"
     command: mirror {{ item.flags }} source/{{ item.bucket | default('') }} target/{{ item.bucket | default('') }}
-  with_items: '{{ minio_mirror_instances }}'
+  with_items: "{{ minio_mirror_instances }}"

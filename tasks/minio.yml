@@ -1,22 +1,22 @@
 ---
-- name: ensure minio data directory
-  file:
-    dest: '{{ minio_data_dir }}'
+- name: Ensure minio data directory
+  ansible.builtin.file:
+    dest: "{{ minio_data_dir }}"
     state: directory
 
-- name: run minio container
-  docker_container:
+- name: Run minio container
+  community.docker.docker_container:
     state: started
-    restart: yes
-    recreate: yes
+    restart: true
+    recreate: true
     pull: true
-    name: '{{ minio_container_name }}'
-    image: '{{ minio_container_image }}'
+    name: "{{ minio_container_name }}"
+    image: "{{ minio_container_image }}"
     restart_policy: always
-    volumes: '{{ minio_container_volumes }}'
-    env: '{{ minio_container_env }}'
-    networks: '{{ minio_container_networks }}'
-    links: '{{ minio_container_links }}'
-    command: '{{ minio_container_command }}'
-    published_ports: '{{ minio_container_published_ports }}'
-    exposed_ports: '{{ minio_container_exposed_ports }}'
+    volumes: "{{ minio_container_volumes }}"
+    env: "{{ minio_container_env }}"
+    networks: "{{ minio_container_networks }}"
+    links: "{{ minio_container_links }}"
+    command: "{{ minio_container_command }}"
+    published_ports: "{{ minio_container_published_ports }}"
+    exposed_ports: "{{ minio_container_exposed_ports }}"

@@ -1,19 +1,19 @@
 ---
-minio_data_dir: '/var/lib/minio/{{ minio_container_name }}/data'
+minio_data_dir: "/var/lib/minio/{{ minio_container_name }}/data"
 minio_container_name: minio
 minio_container_image: minio/minio
-minio_access_key: ''
-minio_secret_key: ''
-minio_browser: 'on'
+minio_access_key: ""
+minio_secret_key: ""
+minio_browser: "on"
 minio_container_env:
-  MINIO_ACCESS_KEY: '{{ minio_access_key }}'
-  MINIO_SECRET_KEY: '{{ minio_secret_key }}'
-  MINIO_BROWSER: '{{ minio_browser }}'
+  MINIO_ACCESS_KEY: "{{ minio_access_key }}"
+  MINIO_SECRET_KEY: "{{ minio_secret_key }}"
+  MINIO_BROWSER: "{{ minio_browser }}"
 minio_container_links: []
 minio_container_networks: []
 minio_container_command: server /export
 minio_container_volumes:
-  - '{{ minio_data_dir }}:/export'
+  - "{{ minio_data_dir }}:/export"
 minio_container_published_ports: []
 minio_container_exposed_ports: []
 
